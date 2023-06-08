@@ -1,0 +1,314 @@
+@startuml name
+
+class BodyFactory
+{
+    /' CreateBody()
+    SetInitialPosition() '/
+}
+
+class SatelliteFactory
+{
+    /' CreateSatellite() '/
+}
+
+class Mass
+{
+    /' massExponent
+    massValue
+
+    getMassExponent()
+    getMassValue()
+    setMassExponent()
+    setMassValue() '/
+}
+
+class Moon
+{
+    /' moon
+    rel
+
+    getMoon()
+    getRel()
+    setMoon()
+    setRel() '/
+}
+
+class Planet
+{
+    /' alternative_name
+    aphelion
+    arg_periapsis
+    avg_temp
+    axial_tilt
+    body_id
+    body_name
+    body_type
+    density
+    dimension
+    discovered_by
+    discovery_date
+    equa_radius
+    escape
+    flattening
+    gravity
+    inclination
+    is_planet
+    long_asc_node
+    main_anomaly
+    mass
+    mean_radius
+    moons
+    perihelion
+    polar_radius
+    semimajor_axis
+    sideral_orbit
+    sideral_rotation
+    systeme_solaire_availability
+    vol
+
+    Initialize() '/
+}
+
+class PlanetInfo
+{
+    /' alternative_name
+    aphelion
+    arg_periapsis
+    avg_temp
+    axial_tilt
+    body_id
+    body_name
+    body_type
+    density
+    dimension
+    discovered_by
+    discovery_date
+    equa_radius
+    escape
+    flattening
+    gravity
+    inclination
+    is_planet
+    long_asc_node
+    main_anomaly
+    mass
+    mean_radius
+    moons
+    perihelion
+    polar_radius
+    semimajor_axis
+    sideral_orbit
+    sideral_rotation
+    systeme_solaire_availability
+    vol
+
+    getAlternativeName()
+    getAphelion()
+    getArgPeriapsis()
+    getAvgTemp()
+    getAxialTilt()
+    getBodyId()
+    getBodyName()
+    getBodyType()
+    getDensity()
+    getDimension()
+    getDiscoveredBy()
+    getDiscoveryDate()
+    getEquaRadius()
+    getEscape()
+    getFlattening()
+    getGravity()
+    getInclination()
+    getIsPlanet()
+    getLongAscNode()
+    getMainAnomaly()
+    getMass()
+    getMeanRadius()
+    getMoons()
+    getPerihelion()
+    getPolarRadius()
+    getSemimajorAxis()
+    getSideralOrbit()
+    getSideralRotation()
+    getSystemeSolaireAvailability()
+    getVol()
+    setAlternativeName()
+    setAphelion()
+    setArgPeriapsis()
+    setAvgTemp()
+    gsetAxialTilt()
+    setBodyId()
+    setBodyName()
+    setBodyType()
+    setDensity()
+    setDimension()
+    setDiscoveredBy()
+    setDiscoveryDate()
+    setEquaRadius()
+    setEscape()
+    setFlattening()
+    setGravity()
+    setInclination()
+    setIsPlanet()
+    setLongAscNode()
+    setMainAnomaly()
+    setMass()
+    setMeanRadius()
+    setMoons()
+    setPerihelion()
+    setPolarRadius()
+    setSemimajorAxis()
+    setSideralOrbit()
+    setSideralRotation()
+    setSystemeSolaireAvailability()
+    setVol() '/
+}
+
+class Position
+{
+    /' body_id
+    body_name
+    date
+    time
+    x
+    y
+    z
+    vx
+    vy
+    vz
+
+    getBodyId()
+    getBodyName()
+    getDate()
+    getTime()
+    getX()
+    getY()
+    getZ()
+    getVx()
+    getVy()
+    getVz()
+    getBodyId()
+    setBodyName()
+    setDate()
+    setTime()
+    setX()
+    setY()
+    setZ()
+    setVx()
+    setVy()
+    setVz() '/
+}
+
+class SideMenu
+{
+    /' Start()
+    OnDrag()
+    OnPointerDown()
+    OnPointerUp()
+    isAfterHalfPoint()
+    GetMinPosition()
+    GetMaxPosition()
+    HandleMenuSlide() '/
+}
+
+class SliderMenuAnim
+{
+    /' ShowHideMenu() '/
+}
+
+class SolarSystemInitializer
+{
+    /' Start() '/
+}
+
+class Trajectory
+{
+    /' Start()
+    GetTrajectories()
+    MovePlanet()
+    UpdateTrajectory() '/
+}
+
+class UIController
+{
+    /' Start()
+    AddPlanetsToMenu()
+    SelectPlanet()
+    OnShowPlanisphereButtonClick()
+    OnCalculateTrajectoriesButtonClick()
+    PostTrajectories()
+    OpenFileDialog()
+    Update() '/
+}
+
+class CameraSetting
+{
+
+}
+
+class FirebaseRequests
+{
+
+}
+
+class SatelliteTrajectory
+{
+
+}
+
+class Vol
+{
+
+}
+
+FirebaseRequests <-left- SolarSystemInitializer
+SolarSystemInitializer <-- BodyFactory
+BodyFactory <-- PlanetInfo
+BodyFactory <-- Planet
+BodyFactory <-right- Trajectory
+
+FirebaseRequests <-- Trajectory
+
+
+PlanetInfo <-- Mass
+PlanetInfo <-- Moon
+PlanetInfo <-- Vol
+
+Planet <-- Mass
+Planet <-- Moon
+Planet <-- Vol
+
+UIController <-right- CameraSetting
+UIController <-- SatelliteFactory
+
+
+
+
+
+
+/' Element <|-down-  Agent
+Element <|-down- Building
+Element <|-down- Tile
+Action <-left- Element : strategy
+
+Tile <|-down-  BuildableTile
+Tile <|-down- ResourceTile
+Tile <|-down- FarmTile
+
+Building <|-down- HouseBuilding
+
+Agent <|-down- WorkerAgent
+
+City <-left- BoardController : contains
+
+Controller <-right- Player : strategy
+Controller <.. OtherController
+
+GameManager "1" -left-> "1..4" Player :contains
+
+Agent --> Inventory : contains
+Building --> Inventory: contains
+City -> Inventory: contains
+
+ResourceTile -> Resource: contains '/
+@enduml
