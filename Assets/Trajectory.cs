@@ -26,17 +26,8 @@ public class Trajectory : MonoBehaviour
     void Start()
     {
         bodyName = gameObject.name.Replace("(Clone)", "");
-
-        // Obtenemos la referencia de la base de datos Firebase que almacena la información de cada cuerpo y las trayectorias
-        DatabaseReference firebaseReference = FirebaseRequests.Instance.firebaseReference;
-        if (firebaseReference != null)
-        {
-            this.GetTrajectories();
-        }
-        else
-        {
-            UnityEngine.Debug.LogError("There was a problem retrieving an instance of Firebase");
-        }
+        
+        this.GetTrajectories();
     }
 
     void GetTrajectories()
